@@ -1,4 +1,3 @@
-#WORKED
 import socket, json, sys
 hashrate_total, hashrate, accepted_shares, invalid_shares, miner_uptime, gpu_temp, gpu_fans = [],[],[],[],[],[],[]
 api_command = "summary+devs"
@@ -25,7 +24,6 @@ except socket.error:
 s.close()
 data = b''.join(chunks)
 data = (json.loads(data))
-#print(json.dumps(data, indent=4))
 
 #hashrate_total = data['summary']['SUMMARY'][0]['MHS 30s']   #mh/s with 1 decimal
 accepted_shares = data['summary']['SUMMARY'][0]['Accepted']
@@ -40,3 +38,5 @@ for i in range(0, len(data['devs']['DEVS'])):
     gpu_temp.append(atemp)
     gpu_fans.append(agpu_fan)
 hashrate_total = sum(hashrate)  #mh/s with 2 decimals
+
+print(json.dumps(data, indent=4))
